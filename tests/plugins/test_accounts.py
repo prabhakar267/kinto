@@ -141,9 +141,8 @@ class AccountDeleteTest(AccountsWebTest):
 class AccountViewsTest(AccountsWebTest):
 
     def setUp(self):
-        r = self.app.put_json('/accounts/alice', {'data': {'password': '123456'}}, status=201)
-        print r.json
-        #self.app.put_json('/accounts/bob', {'data': {'password': 'azerty'}}, status=201)
+        self.app.put_json('/accounts/alice', {'data': {'password': '123456'}}, status=201)
+        self.app.put_json('/accounts/bob', {'data': {'password': 'azerty'}}, status=201)
 
     def test_account_detail_is_forbidden_if_anonymous(self):
         self.app.get('/accounts', status=401)
