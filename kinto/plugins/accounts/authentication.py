@@ -8,7 +8,7 @@ def account_check(username, password, request):
         existing = request.registry.storage.get(parent_id='',
                                                 collection_id='account',
                                                 object_id=username)
-    except storage_exceptions.RecordNotFound:
+    except storage_exceptions.RecordNotFoundError:
         return None
     # XXX: bcrypt whatever
     if existing['password'] == password:
