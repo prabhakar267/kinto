@@ -24,7 +24,7 @@ class Account(resource.UserResource):
         is_anonymous = Authenticated not in self.request.effective_principals
         if is_anonymous and self.request.response.status_code == 200:
             error_details = {
-                'message': 'User %r already exists' % self.record_id
+                'message': 'User %r already exists' % result['data']['id']
             }
             raise http_error(HTTPForbidden(), **error_details)
         return result
